@@ -1,0 +1,115 @@
+@import url('http://fonts.cdnfonts.com/css/circular-std');
+
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    font-family: "Circular Std";
+    font-weight: normal;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #eafffb;
+}
+
+.main {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    flex-basis: 100vh;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+.controls {
+    width: 80%;
+    display: flex;
+    justify-content: space-between;
+}
+
+table {
+    width: 80%;
+    border-collapse: collapse;
+    text-align: left;
+    background-color: white;
+    box-shadow: 11px 10px 57px -3px rgba(0, 0, 0, 0.1);
+}
+
+td, th {
+    padding: 1em;
+    border: 1px solid black;
+}
+
+th {
+    font-weight: bold;
+    background-color: #272c30;
+    color: white;
+}
+
+.actions {
+    display: flex;
+    gap: 5px;
+}
+
+a, button {
+    all: unset;
+    cursor: pointer;
+    border-radius: 5px;
+    padding: 0.5em;
+    color: white;
+    box-shadow: 20px 22px 67px -28px rgba(0, 0, 0, 0.68);
+}
+
+a svg, button svg {
+    vertical-align: bottom;
+    width: 18px;
+    height: 18px;
+    fill: white;
+}
+
+
+#modify {
+    background-color: #293138;
+}
+
+#modify:hover {
+    background-color: #41555b;
+}
+
+#delete {
+    background-color: red;
+}
+
+#delete:hover {
+    background-color: #ff3636;
+}
+
+a:focus, button:focus {
+    outline: lightgreen 5px auto;
+}
+
+input, option, select {
+    padding: 0.5em;
+}
+
+.form li {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.form ul {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form {
+    width: 20%;
+}
