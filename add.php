@@ -1,3 +1,34 @@
+<?php
+if (isset($_POST['matricule'])) {
+    $matricule = intval($_POST['matricule']);
+    $nom = $_POST['nom'];
+    $prenom = $_POST['prenom'];
+    $examen = intval($_POST['examen']);
+    $td = intval($_POST['td']);
+    $date_naissance = date("Y-m-d", strtotime($_POST['date_naissance']));
+    $groupe = intval($_POST['groupe']);
+    $section = $_POST['section'];
+
+    $servername = "localhost";
+    $username = "test";
+    $password = "bruh";
+    $dbname = "test";
+
+    // Create connection
+    $conn = new mysqli($servername, $username, $password, $dbname);
+    // Check connection
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
+
+    $sql = $conn->prepare("INSERT INTO etudiants VALUES (?,?,?,?,?,?,?,?)");
+    $sql->bind_param("issssiii", $matricule, $nom, $prenom, $date_naissance, $section, $groupe, $examen, $td);
+    if ($sql->execute()) {
+        header("Location: index.php");
+    }
+}
+?>
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -14,20 +45,20 @@
         <form action="add.php" method="post">
             <ul>
                 <li>
-                    <label for="id">Matricule:</label>
-                    <input type="number" name="matricule" id="id">
+                    <label for="matricule">Matricule:</label>
+                    <input type="number" name="matricule" id="matricule" required>
                 </li>
                 <li>
-                    <label for="firstname">Nom:</label>
-                    <input type="text" name="name" id="firstname">
+                    <label for="nom">Nom:</label>
+                    <input type="text" name="nom" id="nom" required>
                 </li>
                 <li>
-                    <label for="lastname">Prénom:</label>
-                    <input type="text" name="lastname" id="lastname">
+                    <label for="prenom">Prénom:</label>
+                    <input type="text" name="prenom" id="prenom" required>
                 </li>
                 <li>
-                    <label for="date">Date de naissance:</label>
-                    <input type="date" name="date" id="date">
+                    <label for="date_naissance">Date de naissance:</label>
+                    <input type="date" name="date_naissance" id="date_naissance" required>
                 </li>
                 <li>
                     <label for="section">Section:</label>
@@ -49,11 +80,11 @@
                 </li>
                 <li>
                     <label for="examen">Note Examen:</label>
-                    <input type="number" name="matricule" id="examen">
+                    <input type="number" name="examen" id="examen" required>
                 </li>
                 <li>
-                    <label for="examen">Note TD:</label>
-                    <input type="number" name="examen" id="examen">
+                    <label for="td">Note TD:</label>
+                    <input type="number" name="td" id="td" required>
                 </li>
                 <li>
                     <button id="modify" type="submit">Ajouter</button>

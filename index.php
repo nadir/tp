@@ -62,7 +62,7 @@
             die("Connection failed: " . $conn->connect_error);
         }
 
-        if (array_key_exists('search', $_GET)) {
+        if (isset($_GET['search'])) {
             $sql = "SELECT * FROM etudiants WHERE CONCAT(Nom, ' ', Prenom) LIKE '%" . $_GET['search'] . "%'";
         } else {
             $sql = "SELECT * from etudiants";
@@ -84,7 +84,7 @@
                     <?php echo "<td>" . $row["Note_TD"] . "</td>" ?>
                     <td>
                         <div class="actions">
-                            <a href="modify.php" id="modify">Modifier</a>
+                            <a href="<?php echo "modify.php?matricule=" . $row['Matricule'] . " " ?>" id="modify">Modifier</a>
                             <form method="post" action="suprimmer.php">
                                 <?php echo "<button id='delete' type='submit' name='etudiant' value=" . $row["Matricule"] . ">Suprimmer</button>" ?>
                             </form>
